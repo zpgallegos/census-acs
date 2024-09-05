@@ -52,7 +52,7 @@ def load_schema() -> str:
 
 schema = load_schema()
 
-df = spark.read.format("csv").schema(schema).load(IN_PATH)
+df = spark.read.format("csv").schema(schema).header("true").load(IN_PATH)
 
 # partition by state, convert to parquet
 df.write.format("parquet").partitionBy("ST").mode("append").save(OUT_PATH)
